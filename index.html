@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kanban - Quadro de Tarefas</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- Topo da página com o título e os botões -->
+    <header class="topbar">
+        <h1>Kanban — Quadro de Tarefas</h1>
+        <div class="controls">
+            <button id="btnNova" class="btn primary">+ Nova Tarefa</button>
+            <button id="btnLimpar" class="btn ghost" title="Limpar quadro (apaga tudo)">Limpar</button>
+        </div>
+    </header>
+
+    <!-- Colunas com os boards -->
+    <main class="board" id="board">
+        <section class="coluna" data-col="aFazer" aria-label="A Fazer">
+            <h2>A Fazer</h2>
+            <div class="col-body" id="col-aFazer"></div>
+        </section>
+
+        <section class="coluna" data-col="fazendo" aria-label="Fazendo">
+            <h2>Fazendo</h2>
+            <div class="col-body" id="col-fazendo"></div>
+        </section>
+
+        <section class="coluna" data-col="concluido" aria-label="Concluído">
+            <h2>Concluído</h2>
+            <div class="col-body" id="col-concluido"></div>
+        </section>
+    </main>
+
+    <!-- Modal para criar/editar tarefa -->
+    <!-- 
+    Um modal é como se fosse um Pop-up, 
+    ele só é exibido em tela quando realizamos um ação para abri-lo, 
+    no nosso caso aqui, ele vai abrir quando clicarmos no botão "+ Nova Tarefa", 
+    ou quando dermos um dupli clique no card para editar título ou descrição. 
+  -->
+    <div class="modal" id="modal" aria-hidden="true">
+        <div class="modal-backdrop" id="backdrop"></div>
+        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <!-- Header do modal -->
+            <header class="modal-header">
+                <h3 id="modal-title">Nova Tarefa</h3>
+                <button id="modalClose" class="btn icon" aria-label="Fechar">✖</button>
+            </header>
+
+            <!-- Formulário do modal -->
+            <form id="taskForm" class="modal-body">
+                <input type="hidden" id="taskId" />
+                <label>
+                    Título
+                    <input type="text" id="taskTitle" required placeholder="Ex: Preparar relatório semanal" />
+                </label>
+
+                <label>
+                    Descrição (opcional)
+                    <textarea id="taskDesc" rows="4" placeholder="Detalhes sobre a tarefa"></textarea>
+                </label>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancelBtn" class="btn ghost">Cancelar</button>
+                    <button type="submit" class="btn primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
